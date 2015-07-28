@@ -54,15 +54,8 @@ $di->set('db', function() use ($config) {
 		"host"     => $config->database->host,
 		"username" => $config->database->username,
 		"password" => $config->database->password,
-		"dbname"   => $config->database->name
+		"dbname"   => $config->database->dbname
 	));
-});
-
-/**
- * If the configuration specify the use of metadata adapter use it or use memory otherwise
- */
-$di->set('modelsMetadata', function() {
-	return new MetaData();
 });
 
 /**
@@ -72,6 +65,12 @@ $di->set('session', function() {
 	$session = new SessionAdapter();
 	$session->start();
 	return $session;
+});
+/**
+ * Add authorization customer data into session
+ */
+$di->set('auth', function() {
+	return new Auth();
 });
 
 /**
@@ -90,4 +89,27 @@ $di->set('flash', function(){
  */
 $di->set('menu', function(){
 	return new Menu();
+});
+
+/**
+ * Register the events manager
+ */
+$di->set('dispatcher', function() use ($di) {
+
+	$eventsManager = new EventsManager;
+
+	/**
+	 * Check if the user is allowed to access certain action using the SecurityPlugin
+	 */
+	$eventsManager->attach('dispatch:beforeDispatch', new SecurityPlugin);
+
+	/**
+	 * Handle exceptions and not-found exceptions using NotFoundPlugin
+	 */
+	$eventsManager->attach('dispatch:beforeException', new NotFoundPlugin);
+
+	$dispatcher = new Dispatcher;
+	$dispatcher->setEventsManager($eventsManager);
+
+	return $dispatcher;
 });

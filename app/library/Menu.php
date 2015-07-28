@@ -20,9 +20,13 @@ class Menu extends Component
                 'caption' => 'Task',
                 'action' => 'index'
             ),
+            'products' => array(
+                'caption' => 'Products',
+                'action' => 'index'
+            ),
         ),
         'navbar-right' => array(
-            'session' => array(
+            'login' => array(
                 'caption' => 'Login',
                 'action' => 'index'
             ),
@@ -34,6 +38,10 @@ class Menu extends Component
             'controller' => 'products',
             'action' => 'index',
             'any' => true
+        ),
+        'Customer Info' => array(
+            'controller' => 'customer',
+            'action' => 'index',
         ),
     );
 
@@ -47,12 +55,12 @@ class Menu extends Component
 
         $auth = $this->session->get('auth');
         if ($auth) {
-            $this->_headerMenu['navbar-right']['session'] = array(
+            $this->_headerMenu['navbar-right']['login'] = array(
                 'caption' => 'Logout',
                 'action' => 'end'
             );
         } else {
-            unset($this->_headerMenu['navbar-left']['invoices']);
+            unset($this->_headerMenu['navbar-left']['products']);
         }
 
         $controllerName = $this->view->getControllerName();
