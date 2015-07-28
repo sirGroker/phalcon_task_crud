@@ -44,6 +44,7 @@ class SecurityPlugin extends Plugin
 			//Private area resources
 			$privateResources = array(
 				'products'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'producttypes' => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
 			);
 			foreach ($privateResources as $resource => $actions) {
 				$acl->addResource(new Resource($resource), $actions);

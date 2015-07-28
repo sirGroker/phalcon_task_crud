@@ -10,7 +10,7 @@
         <div class="control-group">
             {{ form.label('username', ['class': 'control-label']) }}
             <div class="controls">
-                {{ form.render('username', ['class': 'form-control']) }}
+                {{ form.render('username', ['class': 'form-control','onkeyup': 'SignUp.check("username");'])}}
                 <p class="help-block">(required)</p>
                 <div class="alert alert-warning" id="username_alert">
                     <strong>Warning!</strong> Please enter your desired user name
@@ -21,7 +21,7 @@
         <div class="control-group">
             {{ form.label('email', ['class': 'control-label']) }}
             <div class="controls">
-                {{ form.render('email', ['class': 'form-control']) }}
+                {{ form.render('email', ['class': 'form-control','onkeyup': 'SignUp.check("email");']) }}
                 <p class="help-block">(required)</p>
                 <div class="alert alert-warning" id="email_alert">
                     <strong>Warning!</strong> Please enter your email
@@ -32,7 +32,7 @@
         <div class="control-group">
             {{ form.label('password', ['class': 'control-label']) }}
             <div class="controls">
-                {{ form.render('password', ['class': 'form-control']) }}
+                {{ form.render('password', ['class': 'form-control','onkeyup': 'SignUp.check("password");']) }}
                 <p class="help-block">(minimum 8 characters)</p>
                 <div class="alert alert-warning" id="password_alert">
                     <strong>Warning!</strong> Please provide a valid password
@@ -51,6 +51,7 @@
         </div>
 
         <div class="form-actions">
+            <br/>
             {{ submit_button('Register', 'class': 'btn btn-primary', 'onclick': 'return SignUp.validate();') }}
         </div>
 

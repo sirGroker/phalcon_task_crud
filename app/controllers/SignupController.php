@@ -40,8 +40,8 @@ class SignupController  extends ControllerBase
             } else {
                 $this->tag->setDefault('email', '');
                 $this->tag->setDefault('password', '');
-                $this->flash->success('Thanks for sign-up, please log-in to start generating invoices');
-                return $this->forward('session/index');
+                $this->flash->success('Thanks for sign-up, please log-in to start!');
+                return $this->forward('index/index');
             }
         }
 

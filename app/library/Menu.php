@@ -3,7 +3,6 @@
 use Phalcon\Mvc\User\Component;
 
 /**
- * Elements
  *
  * Helps to build UI elements for the application
  */
@@ -39,9 +38,15 @@ class Menu extends Component
             'action' => 'index',
             'any' => true
         ),
+        'Product types' => array(
+            'controller' => 'producttypes',
+            'action' => 'index',
+            'any' => true
+        ),
         'Customer Info' => array(
             'controller' => 'customer',
             'action' => 'index',
+            'any' => true
         ),
     );
 
